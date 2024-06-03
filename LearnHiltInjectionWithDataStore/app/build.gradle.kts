@@ -51,7 +51,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.dagger.hilt.android)
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.core.ktx)
