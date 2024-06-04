@@ -6,7 +6,5 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MyViewModel():ViewModel() {
-    @Inject
-    lateinit var repository: MyRepository
+class MyViewModel @Inject constructor(repository: MyRepository) : ViewModel() {
 }

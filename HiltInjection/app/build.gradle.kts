@@ -53,9 +53,9 @@ android {
     }
 }
 
-//kapt{
-//    correctErrorTypes = true
-//}
+kapt{
+    correctErrorTypes = false
+}
 
 dependencies {
 
@@ -84,6 +84,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
