@@ -79,11 +79,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.1")
 
 //    Hilt injection
-    implementation("com.google.dagger:hilt-android:2.44")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
+
+
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
 
 
     // Retrofit
