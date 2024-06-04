@@ -73,6 +73,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+//    ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.1")
+
 //    Hilt injection
     implementation("com.google.dagger:hilt-android:2.44")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
