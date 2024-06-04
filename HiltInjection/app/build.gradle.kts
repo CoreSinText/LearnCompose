@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("dagger.hilt.android.plugin")
 
 }
 
@@ -51,9 +52,10 @@ android {
         }
     }
 }
-kapt{
-    correctErrorTypes = true
-}
+
+//kapt{
+//    correctErrorTypes = true
+//}
 
 dependencies {
 
@@ -79,10 +81,12 @@ dependencies {
 //    Hilt injection
     implementation("com.google.dagger:hilt-android:2.44")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+
 }
