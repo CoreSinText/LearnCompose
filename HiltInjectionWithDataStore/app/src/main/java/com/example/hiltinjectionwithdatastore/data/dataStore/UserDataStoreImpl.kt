@@ -8,36 +8,36 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(UserDataStoreConstant.USER_PREFERENCES_KEY)
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("user_preferences")
 
 class UserDataStoreImpl @Inject constructor(
-    private val context: ApplicationContext
+    private val context: Context
 ) : UserDataStore {
 
     private companion object {
         val USER = stringPreferencesKey("user")
-        val TAG = "DATASTORE_USER"
+        const val TAG = "DATASTORE_USER"
     }
-    override suspend fun setName(key: String, name: String) {
-        val preferencesKey = stringPreferencesKey(key)
+
+    override suspend fun setName(name: String) {
         context.dataStore.edit {
-            it[preferencesKey] = name
+            it[USER] = name
         }
     }
 
     override val getName: Flow<String>
-        get() = context.dataStore.data.map {
-            it[USER] ?: ""
-        }.catch {
+        get() = context.dataStore.data.catch {
             if (it is Exception) {
                 Log.e(TAG, it.message.toString())
-                emit(emptyPreferences().toString())
+                emit(emptyPreferences())
             }
+        }.map {
+            it[USER] ?: ""
         }
+
 }

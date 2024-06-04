@@ -1,5 +1,6 @@
 package com.example.hiltinjectionwithdatastore.di
 
+import android.content.Context
 import com.example.hiltinjectionwithdatastore.data.dataStore.UserDataStore
 import com.example.hiltinjectionwithdatastore.data.dataStore.UserDataStoreImpl
 import dagger.Module
@@ -15,5 +16,5 @@ object UserDataStoreModule {
 
 @Singleton
 @Provides
-fun provideUserDataStore(@ApplicationContext context: ApplicationContext):UserDataStore = UserDataStoreImpl(context)
+fun provideUserDataStore(@ApplicationContext context: Context):UserDataStore = UserDataStoreImpl(context)
 }
