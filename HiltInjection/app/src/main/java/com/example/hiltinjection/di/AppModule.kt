@@ -18,7 +18,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMyApi(): MyApi {
-        return Retrofit.Builder().baseUrl("").build().create(MyApi::class.java)
+        return Retrofit.Builder().baseUrl("https://api.restful-api.dev/").build().create(MyApi::class.java)
     }
 
     @Provides
