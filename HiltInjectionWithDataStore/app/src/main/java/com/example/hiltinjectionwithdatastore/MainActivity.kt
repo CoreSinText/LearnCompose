@@ -58,7 +58,7 @@ fun Greeting( modifier: Modifier = Modifier) {
         }) {
             Text(text = "Save")
         }
-        Text(text = "${myViewModel.nameStore}")
+        Text(text = "${myViewModel.nameStore.value}")
     }
 }
 
