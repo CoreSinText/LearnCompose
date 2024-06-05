@@ -25,7 +25,7 @@ class MyViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(MyUiState())
     val uiState: StateFlow<MyUiState> = _uiState.asStateFlow()
     val nameStore: StateFlow<UserDSUiState> = userDataStoreImpl.getName().map {
-        UserDSUiState(it.toString())
+        UserDSUiState(it.name)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000L),
