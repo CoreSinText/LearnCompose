@@ -29,11 +29,12 @@ class UserDataStoreImpl @Inject constructor(
     override fun getName(): Flow<String> {
         return dataStore.data.catch {
             if (it is Exception) {
-                Log.e(TAG, "getName: ", it)
+                Log.e(TAG, it.toString())
                 emit(emptyPreferences())
             }
             }.map {
                 it[USER] ?: ""
+
             }
         }
 

@@ -1,5 +1,6 @@
 package com.example.hiltinjectionwithdatastore
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -33,6 +34,7 @@ class MyViewModel @Inject constructor(
     suspend fun saveName() {
         viewModelScope.launch {
             userDataStoreImpl.setName(uiState.value.name)
+            Log.d("TEST", userDataStoreImpl.getName().toString())
         }
     }
 }
