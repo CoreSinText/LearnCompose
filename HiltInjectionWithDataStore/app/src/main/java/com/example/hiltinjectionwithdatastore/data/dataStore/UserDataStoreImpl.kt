@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.example.hiltinjectionwithdatastore.data.uiState.UserDSUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -26,15 +27,15 @@ class UserDataStoreImpl @Inject constructor(
         }
     }
 
-    override fun getName(): Flow<String> {
+    override fun getName(): Flow<UserDSUiState> {
         return dataStore.data.catch {
             if (it is Exception) {
                 Log.e(TAG, it.toString())
                 emit(emptyPreferences())
             }
             }.map {
-                it[USER] ?: ""
-
+            val name = it[USER] ?: ""
+            UserDSUiState(name)
             }
         }
 
