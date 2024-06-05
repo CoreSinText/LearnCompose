@@ -26,16 +26,16 @@ class UserDataStoreImpl @Inject constructor(
         }
     }
 
-    override val getName: Flow<String>
-        get() {
-            return dataStore.data.catch {
-                if (it is Exception) {
-                    Log.e(TAG, it.message.toString())
-                    emit(emptyPreferences())
-                }
+    override fun getName(): Flow<String> {
+        return dataStore.data.catch {
+            if (it is Exception) {
+                Log.e(TAG, "getName: ", it)
+                emit(emptyPreferences())
+            }
             }.map {
                 it[USER] ?: ""
             }
         }
+
 
 }

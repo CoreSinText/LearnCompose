@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserDataStore {
     suspend fun setName( name: String)
-    val getName:Flow<String>
+    fun getName(): Flow<String>
 
 }
