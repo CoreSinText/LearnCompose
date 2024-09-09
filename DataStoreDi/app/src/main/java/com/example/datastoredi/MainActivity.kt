@@ -43,10 +43,10 @@ fun DataStoreHillApp(modifier: Modifier = Modifier) {
     val navController: NavHostController = rememberNavController()
     NavHost(navController = navController, startDestination = ScreenFirst) {
         composable<ScreenFirst> {
-            FirstScreen(modifier = modifier)
+            FirstScreen(toSecondScreen = { navController.navigate(ScreenSecond) })
         }
         composable<ScreenSecond> {
-            SecondScreen(modifier = modifier)
+            SecondScreen(toFirstScreen = {navController.navigate(ScreenFirst)})
         }
     }
 }
