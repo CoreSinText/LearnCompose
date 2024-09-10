@@ -5,5 +5,4 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun ScreenSecond(modifier: Modifier = Modifier, goToScreenFirst: () -> Unit) {
-
 }
