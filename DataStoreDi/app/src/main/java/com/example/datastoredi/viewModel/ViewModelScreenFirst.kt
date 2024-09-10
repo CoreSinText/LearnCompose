@@ -11,8 +11,6 @@ class ViewModelScreenFirst() : ViewModel() {
     val uiState = _uiState.asStateFlow()
 
     fun changeName(newName: String) {
-        _uiState.update {
-           it.copy(name = newName)
-        }
+        _uiState.update { it.copy(name = newName) }
     }
 }
