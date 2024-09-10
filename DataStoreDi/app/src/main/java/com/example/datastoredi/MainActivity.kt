@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.datastoredi.ui.screen.ScreenFirst
 import com.example.datastoredi.ui.screen.ScreenSecond
 import com.example.datastoredi.ui.theme.DataStoreDITheme
+import com.example.datastoredi.viewModel.ViewModelScreenFirst
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -40,6 +42,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    val uiStateScreenFirst = ViewModelScreenFirst().uiState.collectAsState()
     NavHost(navController, startDestination = RouteScreenFirst) {
         composable<RouteScreenFirst> {
             ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)})
