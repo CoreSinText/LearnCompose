@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
+    id("com.google.devtools.ksp") version "2.0.20-1.0.24"
+
 }
 
 android {
@@ -75,5 +77,9 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel)
+    // Dagger
+    implementation(libs.google.dagger.compiler)
+    // KSP
+    ksp(libs.google.dagger.compiler)
 
 }
