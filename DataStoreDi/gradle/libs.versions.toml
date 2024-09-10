@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.0"
 daggerCompilerVersion = "2.52"
+datastorePreferences = "1.1.1"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -14,6 +15,7 @@ navigationCompose = "2.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleRuntimeKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 google-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompilerVersion" }

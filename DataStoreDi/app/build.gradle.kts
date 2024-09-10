@@ -81,5 +81,7 @@ dependencies {
     implementation(libs.google.dagger.compiler)
     // KSP
     ksp(libs.google.dagger.compiler)
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
 
 }
