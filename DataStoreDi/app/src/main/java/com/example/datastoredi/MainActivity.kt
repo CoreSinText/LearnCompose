@@ -7,31 +7,23 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.datastoredi.ui.screen.FirstScreen
-import com.example.datastoredi.ui.screen.SecondScreen
-import com.example.datastoredi.ui.theme.DataStoreDiTheme
-import kotlinx.serialization.Serializable
-
-@Serializable
-object ScreenFirst
-
-@Serializable
-object ScreenSecond
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.datastoredi.ui.theme.DataStoreDITheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DataStoreDiTheme {
+            DataStoreDITheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DataStoreHillApp(modifier = Modifier.padding(innerPadding))
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
@@ -39,14 +31,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DataStoreHillApp(modifier: Modifier = Modifier) {
-    val navController: NavHostController = rememberNavController()
-    NavHost(navController = navController, startDestination = ScreenFirst) {
-        composable<ScreenFirst> {
-            FirstScreen(toSecondScreen = { navController.navigate(ScreenSecond) })
-        }
-        composable<ScreenSecond> {
-            SecondScreen(toFirstScreen = {navController.navigate(ScreenFirst)})
-        }
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    DataStoreDITheme {
+        Greeting("Android")
     }
 }

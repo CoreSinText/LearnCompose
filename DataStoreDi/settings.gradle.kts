@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DataStoreDi"
+rootProject.name = "DataStoreDI"
 include(":app")
