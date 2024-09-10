@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -42,10 +43,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-    val uiStateScreenFirst = ViewModelScreenFirst().uiState.collectAsState()
+    val viewModelScreenFirst = ViewModelScreenFirst()
+    val uiStateScreenFirst by viewModelScreenFirst.uiState.collectAsState()
     NavHost(navController, startDestination = RouteScreenFirst) {
         composable<RouteScreenFirst> {
-            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)})
+            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)}, userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName)
         }
         composable<RouteScreenSecond> {
             ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)})

@@ -12,7 +12,7 @@ class ViewModelScreenFirst() : ViewModel() {
 
     fun changeName(newName: String) {
         _uiState.update {
-            uiStateScreenFirst(name = newName)
+           it.copy(name = newName)
         }
     }
 }
