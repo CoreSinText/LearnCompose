@@ -10,7 +10,7 @@ import com.example.datastoredi.data.dataStore.UserDataStore
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "asd")
 
 class MyApplication : Application() {
-    private lateinit var userDataStore: UserDataStore
+    lateinit var userDataStore: UserDataStore
     override fun onCreate() {
         super.onCreate()
         userDataStore = UserDataStore(dataStore)

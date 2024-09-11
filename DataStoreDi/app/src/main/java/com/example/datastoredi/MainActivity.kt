@@ -10,7 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -43,11 +45,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-    val viewModelScreenFirst = ViewModelScreenFirst()
+    val viewModelScreenFirst:ViewModelScreenFirst = viewModel(factory = ViewModelScreenFirst.Factory)
     val uiStateScreenFirst by viewModelScreenFirst.uiState.collectAsState()
+    val coroutine = rememberCoroutineScope()
+
     NavHost(navController, startDestination = RouteScreenFirst) {
         composable<RouteScreenFirst> {
-            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)}, userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName)
+            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)}, userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName, saveUserName =  viewModelScreenFirst::saveName )
         }
         composable<RouteScreenSecond> {
             ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)})
