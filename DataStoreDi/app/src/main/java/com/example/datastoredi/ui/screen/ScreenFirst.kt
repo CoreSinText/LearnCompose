@@ -16,11 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ScreenFirst(modifier: Modifier = Modifier, goToScreenSecond: () -> Unit, userName:String, changeUserName:(newName:String)->Unit, saveUserName:()->Unit) {
+fun ScreenFirst(modifier: Modifier = Modifier, goToScreenSecond: () -> Unit,
+                userName:String, changeUserName:(newName:String)->Unit,
+                saveUserName:()->Unit, storeName:String) {
     Column(modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp)){
             TextField(value = userName, onValueChange = { changeUserName(it) }, label = { Text("Name") })
+            Text("Name: $storeName")
             Button(modifier = modifier, onClick = saveUserName) {
                 Text("Save Name")
             }
@@ -36,6 +39,6 @@ fun ScreenFirst(modifier: Modifier = Modifier, goToScreenSecond: () -> Unit, use
 @Composable
 private fun PrevScreenFirst() {
     MaterialTheme{
-        ScreenFirst(goToScreenSecond = {}, userName = "", changeUserName = {}, saveUserName = {})
+        ScreenFirst(goToScreenSecond = {}, userName = "", changeUserName = {}, saveUserName = {}, storeName = "")
     }
 }

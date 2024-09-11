@@ -47,11 +47,14 @@ fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     val viewModelScreenFirst:ViewModelScreenFirst = viewModel(factory = ViewModelScreenFirst.Factory)
     val uiStateScreenFirst by viewModelScreenFirst.uiState.collectAsState()
-    val coroutine = rememberCoroutineScope()
+    val uiStateUserDataStore by viewModelScreenFirst.uiStateUserDataStore.collectAsState()
 
     NavHost(navController, startDestination = RouteScreenFirst) {
         composable<RouteScreenFirst> {
-            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)}, userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName, saveUserName =  viewModelScreenFirst::saveName )
+            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)},
+                userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName,
+                saveUserName =  viewModelScreenFirst::saveName,
+                storeName = uiStateUserDataStore.name)
         }
         composable<RouteScreenSecond> {
             ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)})
