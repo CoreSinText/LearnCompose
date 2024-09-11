@@ -10,7 +10,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -20,6 +19,7 @@ import com.example.datastoredi.ui.screen.ScreenFirst
 import com.example.datastoredi.ui.screen.ScreenSecond
 import com.example.datastoredi.ui.theme.DataStoreDITheme
 import com.example.datastoredi.viewModel.ViewModelScreenFirst
+import com.example.datastoredi.viewModel.ViewModelScreenSecond
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -49,6 +49,7 @@ fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val uiStateScreenFirst by viewModelScreenFirst.uiState.collectAsState()
     val uiStateUserDataStore by viewModelScreenFirst.uiStateUserDataStore.collectAsState()
 
+
     NavHost(navController, startDestination = RouteScreenFirst) {
         composable<RouteScreenFirst> {
             ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)},
@@ -57,7 +58,7 @@ fun DataStoreDIApp(modifier: Modifier = Modifier) {
                 storeName = uiStateUserDataStore.name)
         }
         composable<RouteScreenSecond> {
-            ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)})
+            ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)}, currentUserName = "as")
         }
     }
 
