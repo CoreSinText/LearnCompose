@@ -15,21 +15,5 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class ViewModelScreenSecond(private val userDataStore: UserDataStore):ViewModel() {
-    val uiStateUserDataStore: StateFlow<UiStateUserDataStore> =
-        userDataStore.currentUserName.map { userName ->
-            UiStateUserDataStore(userName)
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = UiStateUserDataStore("Unknown")
-        )
 
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[APPLICATION_KEY] as MyApplication)
-                ViewModelScreenFirst(application.userDataStore)
-            }
-        }
-    }
 }

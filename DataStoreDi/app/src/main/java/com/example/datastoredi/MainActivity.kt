@@ -19,7 +19,6 @@ import com.example.datastoredi.ui.screen.ScreenFirst
 import com.example.datastoredi.ui.screen.ScreenSecond
 import com.example.datastoredi.ui.theme.DataStoreDITheme
 import com.example.datastoredi.viewModel.ViewModelScreenFirst
-import com.example.datastoredi.viewModel.ViewModelScreenSecond
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -58,7 +57,7 @@ fun DataStoreDIApp(modifier: Modifier = Modifier) {
                 storeName = uiStateUserDataStore.name)
         }
         composable<RouteScreenSecond> {
-            ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)}, currentUserName = "as")
+            ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)}, currentUserName = uiStateUserDataStore.name)
         }
     }
 
