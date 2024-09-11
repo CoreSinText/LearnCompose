@@ -79,6 +79,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     // Dagger
     implementation(libs.google.dagger.compiler)
+    implementation("com.google.dagger:hilt-android:2.52")
+
     // KSP
     ksp(libs.google.dagger.compiler)
     // DataStore

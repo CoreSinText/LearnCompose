@@ -19,6 +19,7 @@ import com.example.datastoredi.ui.screen.ScreenFirst
 import com.example.datastoredi.ui.screen.ScreenSecond
 import com.example.datastoredi.ui.theme.DataStoreDITheme
 import com.example.datastoredi.viewModel.ViewModelScreenFirst
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -27,6 +28,7 @@ object RouteScreenFirst
 @Serializable
 object RouteScreenSecond
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
