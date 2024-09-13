@@ -22,11 +22,15 @@ import com.example.datastoredi.viewModel.ViewModelScreenFirst
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.serialization.Serializable
 
-@Serializable
-object RouteScreenFirst
 
-@Serializable
-object RouteScreenSecond
+sealed class Route(){
+    @Serializable
+    object ScreenFirst
+
+    @Serializable
+    object ScreenSecond
+}
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -51,15 +55,15 @@ fun DataStoreDIApp(modifier: Modifier = Modifier) {
     val uiStateUserDataStore by viewModelScreenFirst.uiStateUserDataStore.collectAsState()
 
 
-    NavHost(navController, startDestination = RouteScreenFirst) {
-        composable<RouteScreenFirst> {
-            ScreenFirst(goToScreenSecond = {navController.navigate(RouteScreenSecond)},
+    NavHost(navController, startDestination = Route.ScreenFirst) {
+        composable<Route.ScreenFirst> {
+            ScreenFirst(goToScreenSecond = {navController.navigate(Route.ScreenSecond)},
                 userName = uiStateScreenFirst.name, changeUserName = viewModelScreenFirst::changeName,
                 saveUserName =  viewModelScreenFirst::saveName,
                 storeName = uiStateUserDataStore.name)
         }
-        composable<RouteScreenSecond> {
-            ScreenSecond(goToScreenFirst = {navController.navigate(RouteScreenFirst)}, currentUserName = uiStateUserDataStore.name)
+        composable<Route.ScreenSecond> {
+            ScreenSecond(goToScreenFirst = {navController.navigate(Route.ScreenFirst)}, currentUserName = uiStateUserDataStore.name)
         }
     }
 
